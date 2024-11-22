@@ -1,61 +1,26 @@
 import express from 'express';
-
-const cats = [
-   {
-      id: 1,
-      descricao: 'Neo',
-      imagem: 'https://placecats.com/neo/300/200'
-   },
-   {
-      id: 2,
-      descricao: 'Millie',
-      imagem: 'https://placecats.com/millie/300/150'
-   },
-   {
-      id: 3,
-      descricao: 'Millie e Neo',
-      imagem: 'https://placecats.com/millie_neo/300/200'
-   },
-   {
-      id: 4,
-      descricao: 'Louie',
-      imagem: 'https://placecats.com/louie/300/200'
-   },
-   {
-      id: 5,
-      descricao: 'Poppy',
-      imagem: 'https://placecats.com/poppy/300/200'
-   },
-   {
-      id: 6,
-      descricao: 'Bella',
-      imagem: 'https://placecats.com/bella/300/200'
-   }
- ];
+import routes from './src/routes/postsRoutes.js';
 
 const app = express();
-app.use(express.json());
+// Cria uma instância do Express, que será o núcleo da nossa aplicação.
+routes(app);
 
 app.listen(3000, () => {
-   console.log('Servidor de gatinhos está ouvindo na porta 3000');
-});
+   console.log('Servidor ouvindo na porta 3000');
+});// Inicia o servidor Express na porta 3000 e exibe uma mensagem no console quando o servidor estiver pronto para receber requisições.
 
-app.get('/cats', (req, res) => {
-   res.status(200).json(cats);
-});
-
-function buscarGatoPorId(id) {
-   return cats.findIndex((cat) => {
-      return cat.id === Number(id);
-   });
+/* function buscarPostPorID(id){
+   return posts.findIndex((post) => {
+       return post.id === Number(id);
+   })
 }
 
-app.get('/cats/:id', (req, res) => {
-   const index = buscarGatoPorId(req.params.id); 
+app.get('/posts/:id', (req, res) => {
+   const index = buscarPostPorID(req.params.id); 
 
    if (index === -1) { 
-      return res.status(404).json({ message: 'Gatinho não encontrado' }); 
+      return res.status(404).json({ message: 'Post não encontrado' }); 
    }
 
-   res.status(200).json(cats[index]); 
-});
+   res.status(200).json(posts[index]); 
+}); */
